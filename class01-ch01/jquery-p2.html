@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>p2</title>
+    <style>
+        .theme1{
+            color:green;
+            background-color: darkcyan;
+        }
+        .theme1:hover{
+            background-color: yellow;
+            color:green;
+        }
+    </style>
+</head>
+<body>
+    <button id="b1">show</button>
+    <button id="b2">hide</button>
+    <button id="b3">theme 1</button>
+    <button id="b4">theme 2</button>
+    <hr>
+    <div id="img">
+        <img src="https://picsum.photos/id/236/200/150" alt="">
+        <img src="https://picsum.photos/id/238/200/150" alt="">
+        <img src="https://picsum.photos/id/239/200/150" alt="">
+        <img src="https://picsum.photos/id/240/200/150" alt="">
+    </div>
+    <hr>
+    <p id="p">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Odio maxime dicta quia veniam sed tenetur nihil, harum, molestiae earum aspernatur voluptatum expedita praesentium impedit iste dolorem. Quo quam totam necessitatibus.</p>
+
+    <script src="../assets/js/jquery-3.7.1.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#b1').click(function () {
+                // $('#img').hide(2000);
+                $('#img').show(2000);
+            });
+            $('#b2').click(function () {
+                $('#img').hide(2000);               
+            });
+
+            $('#b3').click(function (e) { 
+                $('#p').addClass('theme1'); 
+                $('#p').css('border','5px solid red').css('border-radius','20px');            
+
+                
+            });
+        });
+    </script>
+</body>
+</html>
