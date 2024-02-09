@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>p1</title>
+</head>
+<body>
+    <h1 id="h">What IS IQUERY  ??</h1>
+    <P id="p">jQuery হলো একটি জাভাস্ক্রিপ্ট লাইব্রেরি যা ডকুমেন্ট নাভিগেশন, ইভেন্ট হ্যান্ডলিং, অ্যাজাক্স রিকোয়েস্ট, এবং অ্যানিমেশনের জন্য একটি সহজ এবং সংক্ষেপমূল্যে ব্যবহার হয়। এটি ওয়েব ডেভেলপমেন্ট প্রক্রিয়ায় কাজ করতে সাহায্য করতে জনপ্রিয় একটি টুল হিসেবে পরিচিত। jQuery-তে প্রস্তুত করা জাভাস্ক্রিপ্ট কোড সহজেই এবং স্বল্প কোডের মাধ্যমে একটি উন্নত সাইট বা অ্যাপ্লিকেশন তৈরি করতে সাহায্য করে।</P>
+        <script src="../assets/js/jquery-3.7.1.min.js"></script>
+        <script>
+            $(document).ready(function () {
+                $("#p").hide(1000);
+              $('#h').click(function () {
+                $('#p').show(2000);
+              });
+              $("#h").dblclick(function () {
+                $("#p").hide(1000);
+              });
+            // when other function off then it work.
+              $("#h").click(function () {
+                $("#p").toggle(1000);
+              });
+              
+            });
+            
+        </script>
+</body>
+</html>
