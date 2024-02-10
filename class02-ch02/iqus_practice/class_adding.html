@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>class adding</title>
+    <link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+    <style>
+        .redtext {
+            color: red;
+        }
+
+        .greentext {
+            color: green;
+        }
+
+        .yellow {
+            color: yellow;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <button id="changeBtn">Make colorfull</button>
+        <button id="removeBtn">Remove color</button> <br>
+        <em title="Bold & Brave">we loved in Bangladesh</em>
+        <p id="myid">The second love our mother-toung</p>
+        <hr>
+        <ul id="countryList">
+            <li>Bangladesh</li>
+            <li>Barma</li>
+            <li>China</li>
+            <li>Australia</li>
+        </ul>
+    </div>
+    <script src="../../assets/js/bootstrap.bundle.min.js"></script>
+    <script src="../../assets/js/jquery-3.7.1.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#changeBtn").click(function () {
+                $(this).addClass("btn btn-outline-success");
+                $("p#myid").addClass("redtext");
+            });
+
+            $("#removeBtn").click(function () {
+                $('#changeBtn').removeClass('btn btn-outline-green');
+                $("p#myid").removeClass("redtext");
+            });
+
+
+            $('#countryList li').click(function () {
+                $(this).toggleClass('redtext');
+            });
+
+        //     $('#countryList li').click(function () {                
+            
+        //     if ($(this).hasClass('yellow')) 
+        //     {
+        //         $(this).removeClass('yellow');
+        //     } else {
+        //         $(this).addClass('yellow');
+        //     }
+        // });
+
+
+
+
+
+
+        });
+    </script>
+</body>
+
+</html>
