@@ -43,6 +43,13 @@
 
 
         });
+        //practice(same fx in upper fx)
+        $(document).ready(function () {
+            //image error
+            $('img').on('error', function () {
+                $(this).attr('src', "../assets/images/no-image.webp").addClass('noimage');
+            })
+        });
 
     </script>
 

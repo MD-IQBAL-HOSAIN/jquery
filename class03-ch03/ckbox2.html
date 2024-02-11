@@ -59,14 +59,10 @@
     <script>
         $(document).ready(function () {
             $('#handle').click(function () {
-                // alert($(this).prop("checked"));
-                $(".toggle").prop("checked", $(this).prop("checked"));
+                $('.toggle').prop('checked', $(this).prop('checked'));
             });
-
-
             $("#getValue").click(function (e) {
                 $("#selected").html("<b>You selected:</b><br>");
-                //alert($(".toggle:checked").length);
                 if ($(".toggle:checked").length) {
 
                     $(".toggle:checked").each(function () {
@@ -74,10 +70,12 @@
                         $("#selected").append($(this).next("label").html() + "<br> ");
                     });
                 }
-                else{
+                else {
                     $("#selected").append("Nothing");
                 }
-            });
+
+
+            })
 
         });
 

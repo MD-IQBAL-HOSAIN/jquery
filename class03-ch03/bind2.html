@@ -27,39 +27,28 @@
     <script>
         $(document).ready(function () {
             $('input:text').bind({
-                focus: function () {
-                    $(this).val('ABC');
+                foucs: function () {
+                    $(this).val('mmmmm');
+
                 },
                 blur: function () {
                     $(this).val('Enter some text');
                 }
+
             });
-
-            $("#ub").click(function () {
+            //23 lines fx
+            $('#ub').click(function () {
                 $('input:text').unbind();
-            })
-            /*                 $("input:text").focus(function(){
-                                $(this).val('ABC');
-                            })
-                            $("input:text").blur(function(){
-                                $(this).val('Enter some text');
-                            }) */
 
-            /* $("li").click(function(){
-                $(this).css("background-color","red");
-            }) */
-            // $("li").bind("click",function(){
-            //     $(this).css("background-color","red");
-            // });
-
-            $("#uBtn").click(function () {
-                $("li").unbind();
             })
-            $("#bBtn").click(function () {
-                $("li").bind("click", function () {
-                    $(this).css("background-color", "red");
+
+            $('#uBtn').click(function () {
+                $('li').bind('click', function () {
+                    $(this).css('background-color','teal');
+
                 });
             });
+
 
         });
 
