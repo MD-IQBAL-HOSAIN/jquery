@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>jQuery .text() Example</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+  <div id="div3"></div>
+  <div id="div4"></div>
+
+  <script>
+    $(document).ready(function() {
+      // Set text content using .text()
+      $("#div3").text('Link hello');
+
+      // Retrieve text content using .text()
+      const textContent = $("#div3").text();
+      console.log("Text content of #div3:", textContent);
+    });
+  </script>
+</body>
+</html>
