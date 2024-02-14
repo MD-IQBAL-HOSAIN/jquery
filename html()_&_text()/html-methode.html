@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>jQuery .html() Example</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+  <div id="div1"></div>
+  <div id="div2"></div>
+
+  <script>
+    $(document).ready(function() {
+      // Set HTML content using .html()
+      $("#div1").html('<a href="example.html">Link</a><b>hello</b>');
+
+      // Retrieve HTML content using .html()
+      const htmlContent = $("#div1").html();
+      console.log("HTML content of #div1:", htmlContent);
+    });
+  </script>
+</body>
+</html>
