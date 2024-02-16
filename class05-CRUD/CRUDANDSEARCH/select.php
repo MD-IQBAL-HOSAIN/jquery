@@ -92,37 +92,37 @@ $selectQueryResult = $conn->query($selectQuery);
         </div>
         <!-- insert form end -->
         <div id="tableContainer">
-        <table class="table table-bordered table-striped">
-            <caption>Total Products: <?php echo $row['total']; ?></caption>
-            <thead>
-                <tr>
-                    <th>Product ID</th>
-                    <th>SKU</th>
-                    <th>NAME</th>
-                    <th>Price</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <?php
+            <table class="table table-bordered table-striped">
+                <caption>Total Products: <?php echo $row['total']; ?></caption>
+                <thead>
+                    <tr>
+                        <th>Product ID</th>
+                        <th>SKU</th>
+                        <th>NAME</th>
+                        <th>Price</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <?php
 
-            if ($selectQueryResult->num_rows > 0) {
-                while ($row = $selectQueryResult->fetch_assoc()) {
-                    echo "<tbody><tr>
-        <td class='pid'>" . $row['id'] . "</td>
-        <td class='psku'>" . $row['sku'] . "</td>
-        <td class='pname'>" . $row['name'] . "</td>
-        <td class='pprice'>" . $row['price'] . "</td>
-        <td>
-        <a href='javascript:void(0)' data-id='{$row['id']}'><img class='editIcon' src='../../assets/images/edit16x16.png'/></a>
-        <a href='javascript:void(0)' data-id='{$row['id']}'><img class='deleteIcon' src='../../assets/images/delete16x16.png'/></a>
-        </td>
-    </tr></tbody>";
+                if ($selectQueryResult->num_rows > 0) {
+                    while ($row = $selectQueryResult->fetch_assoc()) {
+                        echo "<tbody><tr>
+                    <td class='pid'>" . $row['id'] . "</td>
+                    <td class='psku'>" . $row['sku'] . "</td>
+                    <td class='pname'>" . $row['name'] . "</td>
+                    <td class='pprice'>" . $row['price'] . "</td>
+                    <td>
+                    <a href='javascript:void(0)' data-id='{$row['id']}'><img class='editIcon' src='../../assets/images/edit16x16.png'/></a>
+                    <a href='javascript:void(0)' data-id='{$row['id']}'><img class='deleteIcon' src='../../assets/images/delete16x16.png'/></a>
+                    </td>
+                    </tr></tbody>";
+                    }
                 }
-            }
-            $selectQueryResult->free();
-            $conn->close();
-            ?>
-        </table>
+                $selectQueryResult->free();
+                $conn->close();
+                ?>
+            </table>
         </div>
         <hr>
         <nav aria-label="Page navigation example">
@@ -148,7 +148,9 @@ $selectQueryResult = $conn->query($selectQuery);
                 }
                 $n = (($page + 1) < $totalPages) ? ($page + 1) : $totalPages;
                 $next_disabled = ($page == $totalPages) ? "disabled" : "";
+
                 echo '<li class="page-item ' . $next_disabled . '"><a class="page-link" href="?page=' . $n . '&psearch=' . ($searchString ? $searchString : '') . '">Next</a></li>';
+                
                 echo '<li class="page-item ' . $next_disabled . '"><a class="page-link" href="?page=' . $totalPages . '&psearch=' . ($searchString ? $searchString : '') . '">Last</a></li>';
 
                 ?>
@@ -191,7 +193,7 @@ $selectQueryResult = $conn->query($selectQuery);
                         productprice: pp
                     }, function(d) {
                         console.log(d);
-                        
+
                         if (d.success) {
                             //swal
                             Swal.fire({
@@ -204,8 +206,7 @@ $selectQueryResult = $conn->query($selectQuery);
                             //swal end
                             clearform();
                             $("#formContainer").hide(500);
-                        }
-                        else{
+                        } else {
                             Swal.fire({
                                 position: "top-end",
                                 icon: "error",
@@ -221,7 +222,7 @@ $selectQueryResult = $conn->query($selectQuery);
             });
 
             //edit
-            $("#tableContainer").on("click",".editIcon",function(){
+            $("#tableContainer").on("click", ".editIcon", function() {
                 let t = $(this);
                 let id = t.parent().data("id");
                 let fid = t.closest("tr").find(".pid").html();
@@ -239,22 +240,22 @@ $selectQueryResult = $conn->query($selectQuery);
                 $("#formContainer").show("200");
             });
             //update
-            $("#updateBtn").click(function(){
-               
-               let id = $("#updateid").val();
-               let sku = $("#sku").val();
+            $("#updateBtn").click(function() {
+
+                let id = $("#updateid").val();
+                let sku = $("#sku").val();
                 let pname = $("#pname").val();
                 let pp = $("#pprice").val();
                 if (sku.length && pname.length && pp.length && id.length) {
                     //ajax request
                     $.post("update.php", {
-                        id:id,
+                        id: id,
                         psku: sku,
                         productname: pname,
                         productprice: pp
                     }, function(d) {
                         console.log(d);
-                        
+
                         if (d.success) {
 
                             //swal
@@ -264,12 +265,11 @@ $selectQueryResult = $conn->query($selectQuery);
                                 title: d.message,
                                 showConfirmButton: false,
                                 timer: 1500
-                            }).then(e=> location.reload());
+                            }).then(e => location.reload());
                             //swal end
                             clearform();
                             $("#formContainer").hide(500);
-                        }
-                        else{
+                        } else {
                             Swal.fire({
                                 position: "top-end",
                                 icon: "error",
@@ -278,61 +278,62 @@ $selectQueryResult = $conn->query($selectQuery);
                                 timer: 1500
                             });
                         }
-                    },"json");
+                    }, "json");
                 } else {
                     alert("all required");
                 }
-               // 
+                // 
             });
             //delete
-            $("#tableContainer").on("click",".deleteIcon",function(){
+            $("#tableContainer").on("click", ".deleteIcon", function() {
                 //swal delete
                 Swal.fire({
-  title: "Are you sure?",
-  text: "You won't be able to revert this!",
-  icon: "warning",
-  showCancelButton: true,
-  confirmButtonColor: "#3085d6",
-  cancelButtonColor: "#d33",
-  confirmButtonText: "Yes, delete it!"
-}).then((result) => {
-  if (result.isConfirmed) {
-//
-//swal delete end
-let t = $(this);
-                let id = t.parent().data("id");
-                $.post("delete.php",{did:id},function(d){
-                    //
-                    if (d.success) {
+                    title: "Are you sure?",
+                    text: "You won't be able to revert this!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Yes, delete it!"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        //
+                        //swal delete end
+                        let t = $(this);
+                        let id = t.parent().data("id");
+                        $.post("delete.php", {
+                            did: id
+                        }, function(d) {
+                            //
+                            if (d.success) {
 
-//swal
-Swal.fire({
-    position: "top-end",
-    icon: "success",
-    title: d.message,
-    showConfirmButton: false,
-    timer: 1500
-}).then(e=> t.closest("tr").remove());
-//swal end
-}
-else{
-Swal.fire({
-    position: "top-end",
-    icon: "error",
-    title: d.message,
-    showConfirmButton: false,
-    timer: 1500
-});
-}
-                    //
+                                //swal
+                                Swal.fire({
+                                    position: "top-end",
+                                    icon: "success",
+                                    title: d.message,
+                                    showConfirmButton: false,
+                                    timer: 1500
+                                }).then(e => t.closest("tr").remove());
+                                //swal end
+                            } else {
+                                Swal.fire({
+                                    position: "top-end",
+                                    icon: "error",
+                                    title: d.message,
+                                    showConfirmButton: false,
+                                    timer: 1500
+                                });
+                            }
+                            //
 
-                },"json");
-//
-  }
-});
-                
-                
-                
+                        }, "json");
+                        //
+                    }
+                });
+
+
+
             });
 
 
