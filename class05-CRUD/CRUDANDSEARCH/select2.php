@@ -12,16 +12,20 @@ $offset = ($page - 1) * $pageSize;
 
 #total record start
 
-#for search result
+#for search result start
 if (isset($_GET['psearch'])) {
     $totalRecordQuery = "select count(*) as total from products" . $searchStr;
-} else {
+} 
+#for search result end
+else {
     $totalRecordQuery = "select count(*) as total from products";
 }
 
-$totalRecordQueryResult = $db->query($totalRecordQuery);
-$row = $totalRecordQueryResult->fetch_assoc();
+$totalRecordQR = $db->query($totalRecordQuery);
+$row = $totalRecordQR->fetch_assoc();
 $totalRecord = $row['total'];
+#total record end
+
 $totalPage = ceil($totalRecord / $pageSize);
 
 if (isset($_GET['psearch'])) {
@@ -49,7 +53,7 @@ $selectQueryResult = $db->query($selectQuery);
             <form action="" method="get">
                 <input class="p-2" type="search" name="psearch" id="" placeholder="search">
                 <input class="btn btn-info" type="submit" value="search" name="search_btn" id="">
-                <input class="btn btn-danger border-outline" type="button" value="clear" name="clear_btn" id="" onclick="refreshpage()">
+                <input class="btn btn-outline-danger" type="button" value="clear" name="clear_btn" id="" onclick="refreshpage()">
                 <a href="javascript:void(0)" class="btn btn-primary" id="addbtn">ADD Product</a>
             </form>
         </div>
@@ -78,7 +82,7 @@ $selectQueryResult = $db->query($selectQuery);
             </form>
         </div>
         <!-- insert form end-->
-
+        <!-- table stat -->
         <div class="tableContainer">
             <table class="table table-border table-striped">
                 <caption>Total Products: <?php echo $row['total']; ?></caption>
@@ -99,10 +103,10 @@ $selectQueryResult = $db->query($selectQuery);
                    <td class='pid'>" . $row['id'] . "</td>
                    <td class='psku'>" . $row['sku'] . "</td>
                    <td class='pname'>" . $row['name'] . "</td>
-                   <td class='pprice'>" . $row['price'] . "</td>
+                   <td class='pprice'>" . $row['price'] . "</td>                   
                    <td> 
-                   <a href='javascript:void(0)' data-id='{$row['id']}'>  <img class='editIcon' src='' alt=''> </a> 
-                   <a href='javascript:void(0)' data-id='{$row['id']}'>  <img class='deleteIcon' src='' alt=''> </a> 
+                   <a href='javascript:void(0)' data-id='{$row['id']}'>  <img class='editIcon' src='' alt=''> Edit</a> ||
+                   <a href='javascript:void(0)' data-id='{$row['id']}'>  <img class='deleteIcon' src='' alt=''>Delete</a> 
                    </td>                   
                    </tr></tbody>";
                     }
@@ -118,7 +122,7 @@ $selectQueryResult = $db->query($selectQuery);
                 <?php
                 $p = (($page - 1) > 0) ? ($page - 1) : 1;
                 $prev_disabled = ($page == 1) ? "disabled" : "";
-                echo '<li class="page-iteam ' . $prev_disabled . '"><a class="page-link" href="?page=1' . '&psearch=' . ($searchString ? $searchString : '') . '">First</a></li>';
+                echo '<li class="page-iteam '. $prev_disabled .' "><a class="page-link" href="?page=1' . '&psearch=' . ($searchString ? $searchString : '') . '">First</a></li>';
 
                 echo '<li class="page-iteam ' . $prev_disabled . '"><a class="page-link" href="?page=' . $p . '&psearch=' . ($searchString ? $searchString : '') . '">Previous</a></li>';
 
@@ -149,7 +153,7 @@ $selectQueryResult = $db->query($selectQuery);
             window.location.href = "select2.php";
         }
         $(document).ready(function() {
-            $('#formContaniner').hide();
+            $('#formContainer').hide();
 
             //show-hide form
             $('#addbtn').click(function() {
@@ -172,7 +176,7 @@ $selectQueryResult = $db->query($selectQuery);
                 let pprice = $("#pprice").val('');
                 if (sku.length && pname.length && pprice.length) {
                     //ajax request
-                    $.post("insert.php", {
+                    $.post("insert2.php", {
                         psku: sku,
                         productname: pname,
                         productprice: pprice
@@ -233,7 +237,7 @@ $selectQueryResult = $db->query($selectQuery);
                 let pprice = $("#pprice").val();
                 if (sku.length && pname.length && pprice.length) {
                     //ajax request
-                    $.post("update.php", {
+                    $.post("update2.php", {
                         id: id,
                         psku: sku,
                         productname: pname,
@@ -281,7 +285,7 @@ $selectQueryResult = $db->query($selectQuery);
                         //swal delete end
                         let t = $(this);
                         let id = t.parent().data("id");
-                        $.post("delete.php", {
+                        $.post("delete2.php", {
                             did: id
                         }, function(d) {
                             if (d.success) {

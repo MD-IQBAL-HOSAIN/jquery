@@ -5,7 +5,7 @@ if (!$is_ajax) {die("only ajax allowed"); exit;}
 if(isset($_POST['did'])){
     require "database.php";
     
-    $deleteQuery = "delete from products where id='".$_POST['did']."'";
+    $deleteQuery = "delete from products where id='".$_POST['did']."' ";
     // echo $deleteQuery;
     $conn->query($deleteQuery);
     if($conn->affected_rows == 1){
