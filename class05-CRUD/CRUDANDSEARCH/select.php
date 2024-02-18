@@ -108,15 +108,15 @@ $selectQueryResult = $conn->query($selectQuery);
                 if ($selectQueryResult->num_rows > 0) {
                     while ($row = $selectQueryResult->fetch_assoc()) {
                         echo "<tbody><tr>
-                    <td class='pid'>" . $row['id'] . "</td>
-                    <td class='psku'>" . $row['sku'] . "</td>
-                    <td class='pname'>" . $row['name'] . "</td>
-                    <td class='pprice'>" . $row['price'] . "</td>
-                    <td>
-                    <a href='javascript:void(0)' data-id='{$row['id']}'><img class='editIcon' src='../../assets/images/edit16x16.png'/></a>
-                    <a href='javascript:void(0)' data-id='{$row['id']}'><img class='deleteIcon' src='../../assets/images/delete16x16.png'/></a>
-                    </td>
-                    </tr></tbody>";
+        <td class='pid'>" . $row['id'] . "</td>
+        <td class='psku'>" . $row['sku'] . "</td>
+        <td class='pname'>" . $row['name'] . "</td>
+        <td class='pprice'>" . $row['price'] . "</td>
+        <td>
+        <a href='javascript:void(0)' data-id='{$row['id']}'><img class='editIcon' src='../../assets/images/edit16x16.png'/></a>
+        <a href='javascript:void(0)' data-id='{$row['id']}'><img class='deleteIcon' src='../../assets/images/delete16x16.png'/></a>
+        </td>
+    </tr></tbody>";
                     }
                 }
                 $selectQueryResult->free();
@@ -148,10 +148,9 @@ $selectQueryResult = $conn->query($selectQuery);
                 }
                 $n = (($page + 1) < $totalPages) ? ($page + 1) : $totalPages;
                 $next_disabled = ($page == $totalPages) ? "disabled" : "";
-
                 echo '<li class="page-item ' . $next_disabled . '"><a class="page-link" href="?page=' . $n . '&psearch=' . ($searchString ? $searchString : '') . '">Next</a></li>';
-                
                 echo '<li class="page-item ' . $next_disabled . '"><a class="page-link" href="?page=' . $totalPages . '&psearch=' . ($searchString ? $searchString : '') . '">Last</a></li>';
+                echo '<input type="text" id="gotoTxt" size="1"/><button id="gotoBtn" class="btn btn-outline-info">GO</button>';
 
                 ?>
             </ul>
@@ -331,12 +330,14 @@ $selectQueryResult = $conn->query($selectQuery);
                         //
                     }
                 });
-
-
-
+            });//delete end
+            //goto start
+            $("#gotoBtn").click(function(){
+                let page = Number($("#gotoTxt").val());//NaN
+                if(isNaN(page) || page == "") return;
+                window.location = "select.php?page="+page+"&psearch=";
             });
-
-
+            //goto end
         });
     </script>
 </body>

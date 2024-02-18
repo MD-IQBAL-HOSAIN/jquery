@@ -18,7 +18,7 @@
             <li>USA</li>
             <li>UK</li>
             <li>France</li>
-        </ul>
+            </ul>
         <input type="text">
         <button id="ub">unbind</button>
     </div>
@@ -26,40 +26,40 @@
     <script src="../assets/js/jquery-3.7.1.min.js"></script>
     <script>
         $(document).ready(function () {
-            $('input:text').bind({
-                focus: function () {
-                    $(this).val('ABC');
-                },
-                blur: function () {
-                    $(this).val('Enter some text');
-                }
-            });
-
-            $("#ub").click(function () {
-                $('input:text').unbind();
-            })
-            /*                 $("input:text").focus(function(){
-                                $(this).val('ABC');
-                            })
-                            $("input:text").blur(function(){
-                                $(this).val('Enter some text');
-                            }) */
-
-            /* $("li").click(function(){
-                $(this).css("background-color","red");
-            }) */
-            // $("li").bind("click",function(){
-            //     $(this).css("background-color","red");
-            // });
-
-            $("#uBtn").click(function () {
-                $("li").unbind();
-            })
-            $("#bBtn").click(function () {
-                $("li").bind("click", function () {
-                    $(this).css("background-color", "red");
+            $('input:text').bind(                {
+                    focus: function () {
+                        $(this).val('ABC');
+                    },
+                    blur: function () {
+                        $(this).val('Enter some text');
+                    }
                 });
-            });
+
+                $("#ub").click(function(){
+                    $('input:text').unbind();
+                })
+/*                 $("input:text").focus(function(){
+                    $(this).val('ABC');
+                })
+                $("input:text").blur(function(){
+                    $(this).val('Enter some text');
+                }) */
+
+                /* $("li").click(function(){
+                    $(this).css("background-color","red");
+                }) */
+                // $("li").bind("click",function(){
+                //     $(this).css("background-color","red");
+                // });
+
+                $("#uBtn").click(function(){
+                    $("li").unbind();
+                })
+                $("#bBtn").click(function(){
+                    $("li").bind("click",function(){
+                        $(this).css("background-color","red");  
+                    });
+                });
 
         });
 
