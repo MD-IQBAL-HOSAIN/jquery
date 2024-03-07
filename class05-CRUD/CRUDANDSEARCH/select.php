@@ -91,7 +91,7 @@ $selectQueryResult = $conn->query($selectQuery);
             </form>
         </div>
         <!-- insert form end -->
-        <div id="tableContainer">
+        <div id="tableContainer"> 
             <table class="table table-bordered table-striped">
                 <caption>Total Products: <?php echo $row['total']; ?></caption>
                 <thead>
@@ -278,7 +278,7 @@ $selectQueryResult = $conn->query($selectQuery);
                             });
                         }
                     }, "json");
-                } else {
+                 } else {
                     alert("all required");
                 }
                 // 
